@@ -25,10 +25,9 @@ class CityController extends Controller
     public function index()
     {
         $this->sLable = 'Add';
-        $this->sAction = route('admin.district.create');
+        $this->sAction = route('admin.city.create');
         $input = [];$with = ['getDistrict:id,district_name'];$order = ['id' => 'desc'];
         $records = $this->cityRepo->getAllRecords($input,$with,$order);
-      
         return view('backend.city.list',['data' => $this,'records' => $records]);  
     }
 
@@ -59,11 +58,11 @@ class CityController extends Controller
             $data['country_id'] = 1; $data['state_id'] = 1;
             $this->cityRepo->create($data); 
             DB::commit(); 
-            return redirect()->route('admin.district.index')->with('success',"District has been added"); 
+            return redirect()->route('admin.city.index')->with('success',"City has been added"); 
         }
         catch(\Exception $e){  
             DB::rollback();
-            return redirect()->route('admin.district.store')->with('error',"Something went wrong");
+            return redirect()->route('admin.city.store')->with('error',"Something went wrong");
         }
     }
 
@@ -107,7 +106,7 @@ class CityController extends Controller
         }
         catch(\Exception $e){  
             DB::rollback();
-            return redirect()->route('admin.city.store')->with('error',"Something went wrong");
+            return redirect()->route('admin.city.update',['city' => $id])->with('error',"Something went wrong");
         }
     }
 
