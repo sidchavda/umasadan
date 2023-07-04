@@ -10,7 +10,7 @@
                         @include('backend.layouts.message')
                         <div class="card">
                         <div class="card-header">
-                            <h5>Category List</h5>
+                            <h5>Degree List</h5>
                             <a href="{{$data->sAction}}" class="btn btn-inverse pull-right">{{$data->sLable}}</a> 
                         </div>
                         <div class="card-block">
