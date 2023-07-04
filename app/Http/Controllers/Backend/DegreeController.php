@@ -39,7 +39,7 @@ class DegreeController extends Controller
         $this->sLable = 'Add Degree';
         $this->sAction = route('admin.degree.store');
         $input = [];$with = [];$order = ['id' => 'desc'];
-        return view('backend.Degree.create',['data' => $this]);
+        return view('backend.degree.create',['data' => $this]);
     }
 
     /**
