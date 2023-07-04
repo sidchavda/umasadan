@@ -32,6 +32,17 @@ Route::get('/get-district', [GeneralController::class,'getDistrict']);
 ##City
 Route::get('/get-city', [GeneralController::class,'getCity']);
 
+##Category
+Route::get('/get-category', [GeneralController::class,'getCategory']);
+
+##subcategory
+Route::get('/get-sub-category', [GeneralController::class,'getSubCategory']);
+
+##Degree
+Route::get('/get-degree', [GeneralController::class,'getDegree']);
+
+##subcategory
+Route::get('/get-sub-degree', [GeneralController::class,'getSubDegree']);
 
 Route::group(['middleware' => ['auth-token']], function () {
     Route::post('/add-registration-detail', [AuthController::class,'addRegistrationDetail']);

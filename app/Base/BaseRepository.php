@@ -49,6 +49,7 @@ class BaseRepository
      * @return object
      */
     public function getAllRecords($input = [],$with = [],$order = [],$limit = [],$groupBy = false,$select = ''){
+    
         $records =  $this->model;
         if(!empty($select)){
             $records = $records->selectRaw($select);
@@ -57,16 +58,22 @@ class BaseRepository
             foreach($input as $key => $value){
                 if($key == 'whereIn'){
                     foreach($value as $keyV => $valueD){
-                        $query->whereIn($keyV,$valueD);
+                        if(!empty($valueD)){
+                            $query->whereIn($keyV,$valueD);
+                        }
                     }
                 }
                 else if($key == 'like'){
                     foreach($value as $keyV => $valueD){
-                        $query->where($keyV,'LIKE', '%' . $valueD . '%');
+                        if(!empty($valueD)){
+                            $query->where($keyV,'LIKE', '%' . $valueD . '%');
+                        }
                     }
                 }
                 else{
-                    $query->where($key,$value);
+                    if(!empty($value)){
+                        $query->where($key,$value);
+                    }
                 }
             }
         });

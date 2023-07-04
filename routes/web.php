@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\DegreeController; 
+use App\Http\Controllers\Backend\SubDegreeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +20,7 @@ use App\Http\Controllers\Backend\RoleController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () { 
     return redirect()->route('login');
 });
 
@@ -33,5 +37,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     
     ##Role
     Route::resource('role',RoleController::class);
+
+    ##category
+    Route::resource('category',CategoryController::class);
+    
+    ##subcategory 
+    Route::resource('subcategory',SubCategoryController::class);
+
+    ##Degree
+    Route::resource('degree',DegreeController::class);
+    
+    ##subDegree 
+    Route::resource('subdegree',SubDegreeController::class);
     
 });
