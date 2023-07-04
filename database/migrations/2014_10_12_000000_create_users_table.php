@@ -16,14 +16,17 @@ return new class extends Migration
             $table->string('name');
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->integer('mobile_number')->nullable();
+            $table->string('mobile_number',15)->nullable();
             $table->date('dob')->nullable();
             $table->enum('gender', ['male', 'female','transgender'])->nullable();
-            $table->enum('marital_status', ['malemarride', 'unmarride'])->nullable();
+            $table->enum('marital_status', ['marride', 'unmarride'])->nullable();
             $table->rememberToken();
+            $table->integer('otp')->nullable();
+            $table->timestamp('otp_expiration')->nullable();
+            $table->tinyInteger('activated')->default(0);
             $table->timestamps();
         });
     }

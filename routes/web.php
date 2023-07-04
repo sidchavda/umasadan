@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\CityController;
+use App\Http\Controllers\Backend\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     
     ##city
     Route::resource('city',CityController::class);
+    
+    ##Role
+    Route::resource('role',RoleController::class);
     
 });
