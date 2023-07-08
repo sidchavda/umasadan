@@ -108,8 +108,6 @@ class AuthController extends BaseController
             'mobile_number' => 'required|numeric',
             'dob' => 'required',
             'gender' => 'required',
-            'district_id' => 'required',
-            'city_id' => 'required',
             'present_address' => 'required',
             'permanent_address' => 'required'
 

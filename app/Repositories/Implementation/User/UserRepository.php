@@ -44,6 +44,9 @@ class UserRepository  extends BaseRepository implements UserRepositoryInterface
         ];
         return $this->update($userId,$postData);
     }
-
+    public function getRolebasedUsers(){
+        return $this->userModelRepo::with('getAddress.getDistrict')->role('Mobile-User')->orderBy('id','desc')->get();
+    }
+    
 }
 ?>

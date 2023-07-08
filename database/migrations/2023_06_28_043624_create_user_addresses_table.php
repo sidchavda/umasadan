@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('district_id');
-            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
-            $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            // $table->unsignedBigInteger('district_id');
+            // $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
+            // $table->unsignedBigInteger('city_id');
+            // $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->json('present_address')->nullable();
             $table->json('permanent_address')->nullable();
             $table->string('addhar_no',25)->nullable();
