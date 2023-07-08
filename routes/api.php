@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\GeneralController;
+use App\Http\Controllers\Api\BusinessRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,7 @@ Route::get('/get-sub-degree', [GeneralController::class,'getSubDegree']);
 
 Route::group(['middleware' => ['auth-token']], function () {
     Route::post('/add-registration-detail', [AuthController::class,'addRegistrationDetail']);
+    
+    Route::post('/add-new-request', [BusinessRequestController::class,'addRequest']);
 
 });

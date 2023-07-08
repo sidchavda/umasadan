@@ -19,6 +19,10 @@ use App\Repositories\Interfaces\Degree\DegreeRepositoryInterface;
 use App\Repositories\Implementation\Degree\DegreeRepository;
 use App\Repositories\Interfaces\Degree\SubDegreeRepositoryInterface;
 use App\Repositories\Implementation\Degree\SubDegreeRepository;
+use App\Repositories\Interfaces\Business\BusinessRepositoryInterface;
+use App\Repositories\Implementation\Business\BusinessRepository;
+use App\Repositories\Interfaces\Business\BusinessDetailRepositoryInterface;
+use App\Repositories\Implementation\Business\BusinessDetailRepository;
 class RepositoryServiceProvider extends ServiceProvider  
 {
     /**
@@ -37,6 +41,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SubCategoryRepositoryInterface::class, SubCategoryRepository::class);
         $this->app->bind(DegreeRepositoryInterface::class, DegreeRepository::class);
         $this->app->bind(SubDegreeRepositoryInterface::class, SubDegreeRepository::class);
+        $this->app->bind(BusinessRepositoryInterface::class, BusinessRepository::class);  
+        $this->app->bind(BusinessDetailRepositoryInterface::class, BusinessDetailRepository::class);  
     }  
 
     /**

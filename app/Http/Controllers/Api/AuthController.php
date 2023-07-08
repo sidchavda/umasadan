@@ -86,7 +86,7 @@ class AuthController extends BaseController
             }
             $param = ['otp' => null,'otp_expiration' =>  null,'activated' => 1];
             $this->userRepo->update($user->id,$param);  
-            $userData = $this->userAddressRepo->getSingleRecords->getSingleRecords(['user_id' => $user->id]); 
+            $userData = $this->userAddressRepo->getSingleRecords(['user_id' => $user->id]); 
             ## display  login type wise data
             ## if verified otp then create token
             $token = ApiToken::createToken($user->id);
