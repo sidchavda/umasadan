@@ -84,15 +84,15 @@ class AuthController extends BaseController
             if(strtotime(now()) >strtotime($user->otp_expiration)){
                 return $this->sendError($response,trans('messages.otp_expired'),400); 
             }
-            $param = ['otp' => null,'otp_expiration' =>  null];
+            $param = ['otp' => null,'otp_expiration' =>  null,'activated' => 1];
             $this->userRepo->update($user->id,$param);  
-
+            $userData = $this->userAddressRepo->getSingleRecords->getSingleRecords(['user_id' => $user->id]); 
             ## display  login type wise data
             ## if verified otp then create token
             $token = ApiToken::createToken($user->id);
             $response = ['user_id' => $user->id,'name' => $user->full_name,'role' => 
             isset($user->roles[0]->name) ? $user->roles[0]->name : '','token' => $token];
-            
+            $response['is_registerd'] = !empty($userData) ? true : false;  
             return $this->sendResponse($response,trans('messages.verify_success'),200);  
         }else {
             return $this->sendError($response,trans('messages.user_not'),404);
