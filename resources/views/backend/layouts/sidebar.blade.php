@@ -15,15 +15,8 @@
             <span class="pcoded-mtext {{ Route::is('admin.category.*') ? 'activeMenu' : '' }}">Category</span>
             </a>
          </li>
-      </ul>
-      <ul class="pcoded-item pcoded-left-item">
-         <li class="">
-            <a href="{{route('admin.subcategory.index')}}">
-            <span class="pcoded-micon"><i class="feather icon-feather"></i></span>
-            <span class="pcoded-mtext {{ Route::is('admin.subcategory.*') ? 'activeMenu' : '' }}">Sub Category</span>
-            </a>
-         </li>
       </ul> -->
+   
       <ul class="pcoded-item pcoded-left-item">
          <li class="pcoded-hasmenu {{ Route::is('admin.category.*') || Route::is('admin.subcategory.*') ? 'pcoded-trigger' : '' }}">
                <a href="javascript:void(0)">
@@ -42,6 +35,14 @@
                      </a>
                   </li>
                </ul>
+         </li>
+      </ul>
+      <ul class="pcoded-item pcoded-left-item">
+         <li class="">
+            <a href="{{route('admin.product.index')}}">
+            <span class="pcoded-micon"><i class="feather icon-feather"></i></span>
+            <span class="pcoded-mtext {{ Route::is('admin.product.*') ? 'activeMenu' : '' }}">Product</span>
+            </a>
          </li>
       </ul>
       <ul class="pcoded-item pcoded-left-item">
