@@ -45,7 +45,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>District Name</th>
+                                            <th>Sub cat Name</th>
                                             <th>City Name</th>
                                             <th>Created Date</th>
                                             <th>Action</th>  

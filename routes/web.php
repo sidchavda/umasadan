@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\DegreeController; 
 use App\Http\Controllers\Backend\SubDegreeController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     
     ##subDegree 
     Route::resource('subdegree',SubDegreeController::class);
+    
+    ##Products 
+    Route::resource('product',ProductController::class);
     
     ##Customer List 
     Route::group(['prefix' => 'customer','as' => 'customer.'], function () {

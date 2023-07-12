@@ -63,7 +63,8 @@ return [
     'contest_full' => 'Contest has been full',
     'contest_join' => 'Contest joined successfully',
     'contest_already_join' => 'Contest already joined',
-    'contest_locked' => 'Contest has been locked'
+    'contest_locked' => 'Contest has been locked',
+    'request_submit' => 'Request has been submitted'
 
 
 ];

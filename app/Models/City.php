@@ -2,12 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class City extends Model
+class City extends CustomModel
 {
-    use HasFactory;
     protected $fillable = [
         'city_name','country_id','state_id','district_id'   
     ];

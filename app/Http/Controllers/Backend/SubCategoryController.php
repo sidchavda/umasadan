@@ -29,7 +29,6 @@ class SubCategoryController extends Controller
         $this->sAction = route('admin.subcategory.create');
         $input = [];$with = ['getCategory:id,cat_name'];$order = ['id' => 'desc'];
         $records = $this->subCategoryRepo->getAllRecords($input,$with,$order);
-      
         return view('backend.subcategory.list',['data' => $this,'records' => $records]);  
     }
 
