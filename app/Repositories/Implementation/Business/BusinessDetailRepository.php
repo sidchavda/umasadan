@@ -8,8 +8,10 @@ use App\Repositories\Interfaces\Business\BusinessDetailRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection; 
 use DB;
 use Datatables;
+use App\Traits\FileUpload;
 class BusinessDetailRepository  extends BaseRepository implements BusinessDetailRepositoryInterface
 {
+    use FileUpload; 
     /**
      * @var BusinessDetail
      */
@@ -27,19 +29,34 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
     }
 
     public function storeData(array $data){
-        $postParam = [
-                    'degree_id' => $data['degree_id'],
-                    'sub_degree_id' => $data['sub_degree_id'],
-                    'experience_year' => $data['experience_year'],
-                    'delivery_type' => $data['delivery_type'],
-                    'job_day_type' => $data['job_day_type'],
-                    'shift' => $data['shift'],
-                    'work_platform' => $data['work_platform'],
-                    'working_hours' => $data['working_hours'],
-                    'business_desc' => $data['business_desc'],
-                    'b_r_id' => $data['b_r_id']
-        ];  
-        $this->businessDetailRepo->create($postParam); 
+        $postArray = [
+            'b_r_id' => $data['b_r_id'],
+            'experience_year' => $data['experience_year'],
+            'business_desc' => $data['business_desc'],
+        ];
+        $categoryId = $data['category_id'];
+        switch($categoryId) {
+            case 1:
+                $postArray['degree_id'] = $data['degree_id'];
+                $postArray['sub_degree_id'] = $data['sub_degree_id'];
+                $postArray['gender'] = $data['gender'];
+                $postArray['job_day_type'] = $data['job_day_type'];
+                $postArray['shift'] = $data['shift'];
+                $postArray['work_platform'] = $data['work_platform'];
+                $postArray['working_hours'] = $data['working_hours'];
+            break;
+            case 2:
+                $postArray['delivery_type'] = $data['delivery_type'];
+                $postArray['products'] = $data['products'];
+            default:    
+        }
+        if(!empty($data['id_proof'])){
+            $fileName = $this->uploadFile($data['id_proof'],'proof');
+            if($fileName){
+                $postArray['id_proof'] = $fileName;
+            }
+        }
+        $this->businessDetailRepo->create($postArray); 
     }
 }
 ?>

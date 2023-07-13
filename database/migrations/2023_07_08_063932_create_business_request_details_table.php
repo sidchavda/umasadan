@@ -27,9 +27,9 @@ return new class extends Migration
             $table->enum('work_platform',['home','office'])->nullable(); 
             $table->integer('working_hours')->nullable();
             $table->text('business_desc')->nullable(); 
-            $table->text('products')->nullable();   
-            $table->text('id_proof')->nullable();   
-            $table->timestamps(); 
+            $table->json('products')->nullable();   
+            $table->text('id_proof')->nullable();    
+            $table->timestamps();  
         });
     }
 

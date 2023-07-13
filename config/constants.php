@@ -8,7 +8,11 @@ return [
         'validation_error' => 401
     ],
     'otp_expiration_min' => 1,
-    'secret_key' => 'umasetu'
+    'secret_key' => 'umasetu',
+    'file' => [
+        'proof_file_path' => 'upload/proof',
+        'user_file_path' => 'upload/user'
+    ],
    
 ];
 ?>

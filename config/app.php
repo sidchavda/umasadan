@@ -185,7 +185,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'ApiToken' => App\Traits\TokenGeneration::class     
+        'ApiToken' => App\Traits\TokenGeneration::class 
+            
     ])->toArray(),
 
 ];

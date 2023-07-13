@@ -45,5 +45,19 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
         $address[4] = isset($data->getDistrict->district_name) ? $data->getDistrict->district_name:'';
        return  $this->update($buId,['searchable_address' => implode(',',$address)]); 
     }
+
+    public function getData(){
+       $response =  DB::table('business_requests as br')
+                    ->selectRaw("
+                        br.id,br.business_name,
+                        CONCAT(u.first_name, ' ',u.middle_name,u.last_name) as full_name,
+                        sc.sub_cat_name as sub_category,
+                        br.searchable_address
+                    ")
+                    ->leftjoin('sub_categories as sc','sc.id','=','br.sub_category_id')
+                    ->leftjoin('users as u','u.id','=','br.create_by')
+                    ->where('status','pending')->get();    
+       return $response;
+    }
 }
 ?>

@@ -62,7 +62,8 @@ class BusinessRequestController extends BaseController
             'city_id' => 'required',
             'present_address' => 'required',
             'experience_year' => 'numeric',
-            'id_proof' => 'image|mimes:jpg,png' 
+            'id_proof' => 'image|mimes:jpg,png',
+            'business_desc'=>  'required'
 
         ];
         $categoryId = $param['category_id'];
@@ -78,15 +79,18 @@ class BusinessRequestController extends BaseController
             break;
             case 2:
                 $validationArray['delivery_type'] = 'in:home,pickup';
-                // $validationArray['sub_degree_id'] = 'required|numeric';
-                // $validationArray['job_day_type'] = 'in:fulltime,parttime';
-                // $validationArray['shift'] = 'in:day,night';
-                // $validationArray['work_platform'] = 'in:home,office';
-                // $validationArray['working_hours'] = 'numeric';
+                $validationArray['products'] = 'required';
             default:    
         }
         $validator = Validator::make($param,$validationArray);
         return $validator;        
     }
-    
+    public function getRequest(Request $request){
+        $records = $this->buRepo->getData();
+        if($records->count() > 0){
+            return $this->sendResponse($records,trans('messages.records_found'),200);
+        }else{
+            return  $this->sendError([],trans('messages.records_not_found'),config('constants.status_code.not_found'));  
+        }
+    }
 }
