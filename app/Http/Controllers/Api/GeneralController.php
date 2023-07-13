@@ -10,12 +10,14 @@ use App\Repositories\Interfaces\Category\CategoryRepositoryInterface;
 use App\Repositories\Interfaces\Category\SubCategoryRepositoryInterface;
 use App\Repositories\Interfaces\Degree\DegreeRepositoryInterface;
 use App\Repositories\Interfaces\Degree\SubDegreeRepositoryInterface;
+use App\Repositories\Interfaces\Product\ProductRepositoryInterface;
 class GeneralController extends BaseController
 {
     protected $subDegreeRepo;
     protected $degreeRepo;
     protected $district;
     protected $city;
+    protected $productRepo;
     public function __construct(
         District $district,
         City $city,
@@ -23,6 +25,7 @@ class GeneralController extends BaseController
         SubCategoryRepositoryInterface $subCategoryRepo,
         DegreeRepositoryInterface $degreeRepo,
         SubDegreeRepositoryInterface $subDegreeRepo,
+        ProductRepositoryInterface $productRepo
         
         )
     {
@@ -32,6 +35,7 @@ class GeneralController extends BaseController
         $this->subCategoryRepo = $subCategoryRepo;
         $this->degreeRepo = $degreeRepo; 
         $this->subDegreeRepo = $subDegreeRepo;
+        $this->productRepo = $productRepo;
     }
 
     public function getDistrict(){ 
@@ -97,6 +101,18 @@ class GeneralController extends BaseController
       
         if($subDegrees->count() > 0){ 
             return $this->sendResponse($subDegrees,trans('messages.records_found'),200);
+        }else{
+            return  $this->sendError([],trans('messages.records_not_found'),config('constants.status_code.not_found'));  
+        }
+    }
+
+    public function getProducts(Request $request){   
+        $input = ['category_id' => $request->category_id];
+        $with = [];$order = ['id' => 'desc'];$select = 'id,product_name,category_id';
+        $products = $this->productRepo->getAllRecords($input,$with,$order,[],false,$select);
+      
+        if($products->count() > 0){ 
+            return $this->sendResponse($products,trans('messages.records_found'),200);
         }else{
             return  $this->sendError([],trans('messages.records_not_found'),config('constants.status_code.not_found'));  
         }

@@ -86,7 +86,8 @@ class BusinessRequestController extends BaseController
         return $validator;        
     }
     public function getRequest(Request $request){
-        $records = $this->buRepo->getData();
+        $filter = ['category_id' => $request->category_id];
+        $records = $this->buRepo->getData($filter);
         if($records->count() > 0){
             return $this->sendResponse($records,trans('messages.records_found'),200);
         }else{

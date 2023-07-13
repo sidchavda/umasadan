@@ -46,14 +46,20 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
        return  $this->update($buId,['searchable_address' => implode(',',$address)]); 
     }
 
-    public function getData(){
+    public function getData(array $filter = []){
        $response =  DB::table('business_requests as br')
                     ->selectRaw("
                         br.id,br.business_name,
                         CONCAT(u.first_name, ' ',u.middle_name,u.last_name) as full_name,
                         sc.sub_cat_name as sub_category,
+                        br.category_id,
                         br.searchable_address
                     ")
+                    ->where(function($query) use ($filter){
+                        if(!empty($filter['category_id'])){
+                            $query->where('br.category_id',$filter['category_id']);
+                        }
+                    })
                     ->leftjoin('sub_categories as sc','sc.id','=','br.sub_category_id')
                     ->leftjoin('users as u','u.id','=','br.create_by')
                     ->where('status','pending')->get();    

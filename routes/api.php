@@ -42,6 +42,9 @@ Route::get('/get-sub-category', [GeneralController::class,'getSubCategory']);
 ##Degree
 Route::get('/get-degree', [GeneralController::class,'getDegree']);
 
+##products
+Route::get('/get-product', [GeneralController::class,'getProducts']);
+
 ##subcategory
 Route::get('/get-sub-degree', [GeneralController::class,'getSubDegree']);
 
