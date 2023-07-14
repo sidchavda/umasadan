@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('create_by');
             $table->foreign('create_by')->references('id')->on('users')->onDelete('cascade');
             $table->tinyInteger('activated')->default(1);
-            $table->timestamps(); 
+            $table->timestamps();  
         });  
     }
 
