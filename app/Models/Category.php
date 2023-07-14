@@ -7,5 +7,7 @@ class Category extends CustomModel
     protected $fillable = [
         'cat_name'   
     ];
+
+    
     
 }

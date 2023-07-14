@@ -15,7 +15,8 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
     /**
      * @var BusinessDetail
      */
-    protected $businessDetailRepo; 
+    protected $businessDetailRepo;
+     
 
     /**
      * BusinessRequest constructor.
@@ -29,6 +30,8 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
     }
 
     public function storeData(array $data){
+        
+       
         $postArray = [
             'b_r_id' => $data['b_r_id'],
             'experience_year' => $data['experience_year'],
@@ -46,6 +49,10 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
                 $postArray['working_hours'] = $data['working_hours'];
             break;
             case 2:
+                $products = $data['products'];
+                if(!empty($data['product_name'])){
+                    $products = $this->addValueInJson($data); 
+                }
                 $postArray['delivery_type'] = $data['delivery_type'];
                 $postArray['products'] = $data['products'];
             default:    
@@ -57,6 +64,16 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
             }
         }
         $this->businessDetailRepo->create($postArray); 
+    }
+
+    public function addValueInJson($data){
+        $productName = $data['product_name'];
+        $jsonArray = json_decode($data['products'],true); 
+        $postArray = ['category_id' => $data['category_id'],'product_name' => $productName,'activated' => 0,'create_by' => $data['user_id']];
+        $productId = DB::table('products')->insertGetId($postArray);
+        array_push($jsonArray,$productId);
+        return json_encode($jsonArray);
+        
     }
 }
 ?>
