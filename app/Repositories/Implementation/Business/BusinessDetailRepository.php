@@ -74,7 +74,6 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
         $productId = DB::table('products')->insertGetId($postArray);
         array_push($jsonArray,$productId);
         return json_encode($jsonArray);
-        
     }
 }
 ?>

@@ -91,6 +91,6 @@ class BusinessRequestController extends BaseController
             return $this->sendResponse($records,trans('messages.records_found'),200);
         }else{
             return  $this->sendError([],trans('messages.records_not_found'),config('constants.status_code.not_found'));  
-        }
+        } 
     }
 }
