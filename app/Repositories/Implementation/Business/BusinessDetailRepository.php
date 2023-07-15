@@ -43,7 +43,6 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
                 $postArray['degree_id'] = $data['degree_id'];
                 $postArray['sub_degree_id'] = isset($data['sub_degree_id'])?$data['sub_degree_id']:Null;
                 $postArray['section'] = $data['section']; 
-                $postArray['gender'] = $data['gender'];
                 $postArray['job_day_type'] = $data['job_day_type'];
                 $postArray['shift'] = $data['shift'];
                 $postArray['work_platform'] = $data['work_platform'];

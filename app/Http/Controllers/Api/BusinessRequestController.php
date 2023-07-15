@@ -71,7 +71,6 @@ class BusinessRequestController extends BaseController
                 $validationArray['degree_id'] = 'required|numeric';
                 // $validationArray['sub_degree_id'] = 'required|numeric';
                 $validationArray['section'] = 'required|string';
-                $validationArray['gender'] = 'in:male,female';
                 $validationArray['job_day_type'] = 'in:fulltime,parttime';
                 $validationArray['shift'] = 'in:day,night';
                 $validationArray['work_platform'] = 'in:home,office';
