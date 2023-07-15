@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sub_degree_id');
             $table->foreign('sub_degree_id')->references('id')->on('sub_degrees')->onDelete('cascade'); 
             $table->integer('experience_year')->nullable();
+            $table->string('section',200)->nullable();
             $table->enum('gender',['male','female'])->nullable(); 
             $table->enum('delivery_type',['home','pickup'])->nullable();
             $table->enum('job_day_type',['fulltime','parttime'])->nullable(); 

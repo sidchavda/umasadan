@@ -55,8 +55,8 @@ class BusinessRequestController extends BaseController
     //   dd($param);
         $validationArray = [
             'category_id' => 'required|numeric',
-            'sub_category_id' => 'required|numeric',
-            'business_name' => 'required',
+            // 'sub_category_id' => 'required|numeric',
+            'business_name' => 'required', 
             'mobile_number' => 'required',
             'district_id' => 'required',
             'city_id' => 'required',
@@ -64,13 +64,13 @@ class BusinessRequestController extends BaseController
             'experience_year' => 'numeric',
             'id_proof' => 'image|mimes:jpg,png',
             'business_desc'=>  'required'
-
-        ];
+        ]; 
         $categoryId = $param['category_id'];
         switch($categoryId) {
             case 1:
                 $validationArray['degree_id'] = 'required|numeric';
-                $validationArray['sub_degree_id'] = 'required|numeric';
+                // $validationArray['sub_degree_id'] = 'required|numeric';
+                $validationArray['section'] = 'required|string';
                 $validationArray['gender'] = 'in:male,female';
                 $validationArray['job_day_type'] = 'in:fulltime,parttime';
                 $validationArray['shift'] = 'in:day,night';

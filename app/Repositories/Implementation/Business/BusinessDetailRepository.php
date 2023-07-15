@@ -41,7 +41,8 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
         switch($categoryId) {
             case 1:
                 $postArray['degree_id'] = $data['degree_id'];
-                $postArray['sub_degree_id'] = $data['sub_degree_id'];
+                $postArray['sub_degree_id'] = isset($data['sub_degree_id'])?$data['sub_degree_id']:Null;
+                $postArray['section'] = $data['section']; 
                 $postArray['gender'] = $data['gender'];
                 $postArray['job_day_type'] = $data['job_day_type'];
                 $postArray['shift'] = $data['shift'];
@@ -63,6 +64,7 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
                 $postArray['id_proof'] = $fileName;
             }
         }
+      
         $this->businessDetailRepo->create($postArray); 
     }
 

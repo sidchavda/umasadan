@@ -27,14 +27,18 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
         $this->businessRequestRepo = $businessRequest;
     }
     public function storeData($data){
-        $postParam = ['category_id' => $data['category_id'],'sub_category_id' => $data['sub_category_id'],'business_name' => $data['business_name'],'mobile_number' => $data['mobile_number'],'district_id' => $data['district_id'],'city_id' => $data['city_id'],'present_address' => $data['present_address'],'create_by' => $data['user_id']];
+        $postParam = ['category_id' => $data['category_id'],
+        'business_name' => $data['business_name'],'mobile_number' => $data['mobile_number'],'district_id' => $data['district_id'],'city_id' => $data['city_id'],'present_address' => $data['present_address'],'create_by' => $data['user_id']];
+        if($data['category_id'] != 1) {   
+            $postParam['sub_category_id'] = $data['sub_category_id']; 
+        } 
         $buData = $this->businessRequestRepo->create($postParam);
         //Update Full Address
         $reqquestData = $this->updateFullAddress($buData->id);
         return $reqquestData; 
     }
 
-    public function updateFullAddress(int $buId){
+    public function updateFullAddress(int $buId){ 
         $data = $this->getById($buId,['getDistrict','getCity']);
         $jsonData = json_decode($data->present_address);
         $address = [];
