@@ -61,9 +61,11 @@ class GeneralController extends BaseController
     }
 
     public function getCategory(){ 
-        $input = [];$with = [];$order = ['id' => 'desc'];$select = 'id,cat_name';
+        $input = [];$with = ['getSubCategory:id'];$order = ['id' => 'desc'];$select = 'id,cat_name';
         $categories = $this->categoryRepo->getAllRecords($input,$with,$order,[],false,$select);
-      
+        $categories->each(function ($category) {
+            $category->is_subcategory = $category->getSubCategory->isNotEmpty();
+        });
         if($categories->count() > 0){
             return $this->sendResponse($categories,trans('messages.records_found'),200);
         }else{
@@ -84,9 +86,11 @@ class GeneralController extends BaseController
     }
 
     public function getDegree(){ 
-        $input = [];$with = [];$order = ['id' => 'desc'];$select = 'id,degree_name';
+        $input = [];$with = ['getSubDegree'];$order = ['id' => 'desc'];$select = 'id,degree_name';
         $degrees = $this->degreeRepo->getAllRecords($input,$with,$order,[],false,$select);
-      
+        $degrees->each(function ($degree) {
+            $degree->is_subdegree = $degree->getSubDegree->isNotEmpty();
+        });
         if($degrees->count() > 0){
             return $this->sendResponse($degrees,trans('messages.records_found'),200);
         }else{

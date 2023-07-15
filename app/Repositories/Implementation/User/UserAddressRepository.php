@@ -27,7 +27,8 @@ class UserAddressRepository  extends BaseRepository implements UserAddressReposi
     }
 
     public function updateAddress(int $userId, array $data){
-        $postData = [
+     
+        $postData = [ 
             'user_id' => $userId,
             'district_id' => $data['district_id'],
             'city_id' => $data['city_id'], 
@@ -39,6 +40,7 @@ class UserAddressRepository  extends BaseRepository implements UserAddressReposi
         if($data){
           return $this->userAddressModelRepo->where(['user_id'=>$userId])->update($postData);
         }else{
+            // dd($postData);
            return $this->create($postData);
         } 
     }

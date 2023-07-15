@@ -8,6 +8,8 @@ class Category extends CustomModel
         'cat_name'   
     ];
 
-    
+    public function getSubCategory(){ 
+        return $this->hasMany(SubCategory::class,'id');
+    }
     
 }

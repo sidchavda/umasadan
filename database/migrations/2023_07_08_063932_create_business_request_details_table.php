@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();  
             $table->unsignedBigInteger('b_r_id');
             $table->foreign('b_r_id')->references('id')->on('business_requests')->onDelete('cascade')->nullable();
-            $table->unsignedBigInteger('degree_id');
+            $table->unsignedBigInteger('degree_id')->nullable();
             $table->foreign('degree_id')->references('id')->on('degrees')->onDelete('cascade');
-            $table->unsignedBigInteger('sub_degree_id');
+            $table->unsignedBigInteger('sub_degree_id')->nullable();
             $table->foreign('sub_degree_id')->references('id')->on('sub_degrees')->onDelete('cascade'); 
             $table->integer('experience_year')->nullable();
             $table->string('section',200)->nullable();

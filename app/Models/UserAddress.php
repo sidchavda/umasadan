@@ -5,7 +5,8 @@ namespace App\Models;
 
 use App\Models\District;
 use App\Models\City;
-class UserAddress extends CustomModel
+use Illuminate\Database\Eloquent\Model;
+class UserAddress extends Model
 {
     protected $fillable = [
         'user_id',
