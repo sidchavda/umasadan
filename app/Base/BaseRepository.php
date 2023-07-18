@@ -173,6 +173,7 @@ class BaseRepository
     {
         $query = $this->model;
         if(!empty($select)) {
+           
             $select = implode(',',$select);
             $query = $query->selectRaw($select);
         }

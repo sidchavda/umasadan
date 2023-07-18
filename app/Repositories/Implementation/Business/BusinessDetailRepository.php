@@ -5,6 +5,7 @@ namespace App\Repositories\Implementation\Business;
 use App\Base\BaseRepository;
 use App\Models\BusinessRequestDetail;
 use App\Repositories\Interfaces\Business\BusinessDetailRepositoryInterface;
+use App\Repositories\Interfaces\Category\SubCategoryRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection; 
 use DB;
 use Datatables;
@@ -16,17 +17,18 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
      * @var BusinessDetail
      */
     protected $businessDetailRepo;
-     
+    protected $subCategoryRepo;
 
     /**
      * BusinessRequest constructor.
      *
      * @param BusinessRequestDetail $businessDetail
      */
-    public function __construct(BusinessRequestDetail $businessDetail)
+    public function __construct(BusinessRequestDetail $businessDetail,SubCategoryRepositoryInterface $subCategoryRepo)
     {
         parent::__construct($businessDetail);
         $this->businessDetailRepo = $businessDetail;
+        $this->subCategoryRepo = $subCategoryRepo;
     }
 
     public function storeData(array $data){
@@ -74,6 +76,16 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
         $productId = DB::table('products')->insertGetId($postArray);
         array_push($jsonArray,$productId);
         return json_encode($jsonArray);
+    }
+
+    public function getDetail($id){
+        $with = ['getMainRequest:id,business_name,email,mobile_number,present_address,status,searchable_address','getDegree:id,degree_name'];
+        $select = ['id','sub_degree_id','experience_year','section','delivery_type','job_day_type','shift','work_platform','working_hours','business_desc','products','id_proof','created_at'];
+        $select = [];
+        $records = $this->getSingleRecords(['id' => $id],$select,$with);  
+        $records->get_sub_degree= $this->subCategoryRepo->getMultipleRecords($records->sub_degree_id);
+        return  $records;  
+        // $this->subCategoryRepo
     }
 }
 ?>

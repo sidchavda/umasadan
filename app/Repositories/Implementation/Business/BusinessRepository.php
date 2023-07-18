@@ -69,5 +69,7 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
                     ->where('status','pending')->get();    
        return $response;
     }
+
+    
 }
 ?>

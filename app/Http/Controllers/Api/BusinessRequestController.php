@@ -93,4 +93,19 @@ class BusinessRequestController extends BaseController
             return  $this->sendError([],trans('messages.records_not_found'),config('constants.status_code.not_found'));  
         } 
     }
+
+    public function getRequestDetail(int $id){
+        try{
+            $requestDetail  = $this->buDetailRepo->getDetail($id); 
+            if(!empty($requestDetail)){
+                return $this->sendResponse($requestDetail,trans('messages.records_found'),200);
+            }else{
+                return  $this->sendError([],trans('messages.records_not_found'),config('constants.status_code.not_found'));  
+            }   
+        }
+        catch(\Exception $e){ 
+            $response['error'] = !empty($e->getMessage())?$e->getMessage() : '';
+           return  $this->sendError($response,trans('messages.something'),500);
+        }
+    }
 }

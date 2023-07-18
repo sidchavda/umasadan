@@ -8,19 +8,19 @@
 <nav class="pcoded-navbar">
    <div class="pcoded-inner-navbar main-menu">
       <div class="pcoded-navigatio-lavel">Navigation</div>
-      <!-- <ul class="pcoded-item pcoded-left-item">
+      <ul class="pcoded-item pcoded-left-item">
          <li class="">
-            <a href="{{route('admin.category.index')}}">
-            <span class="pcoded-micon"><i class="feather icon-feather"></i></span>
-            <span class="pcoded-mtext {{ Route::is('admin.category.*') ? 'activeMenu' : '' }}">Category</span>
+            <a href="{{route('admin.home')}}">
+            <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+            <span class="pcoded-mtext {{ Route::is('admin.home.*') ? 'activeMenu' : '' }}">Dashboard</span>
             </a>
          </li>
-      </ul> -->
+      </ul>
    
       <ul class="pcoded-item pcoded-left-item">
          <li class="pcoded-hasmenu {{ Route::is('admin.category.*') || Route::is('admin.subcategory.*') ? 'pcoded-trigger' : '' }}">
                <a href="javascript:void(0)">
-               <span class="pcoded-micon"><i class="feather icon-gitlab"></i></span>
+               <span class="pcoded-micon"><i class="feather icon-command"></i></span>
                <span class="pcoded-mtext">Categories</span>
                </a> 
                <ul class="pcoded-submenu">
@@ -68,7 +68,7 @@
       <ul class="pcoded-item pcoded-left-item">
          <li class="pcoded-hasmenu {{ Route::is('admin.role.*') || Route::is('admin.district.*') || Route::is('admin.city.*') ? 'pcoded-trigger' : '' }}">
                <a href="javascript:void(0)">
-               <span class="pcoded-micon"><i class="feather icon-gitlab"></i></span>
+               <span class="pcoded-micon"><i class="feather icon-cpu"></i></span>
                <span class="pcoded-mtext">Settings</span>
                </a> 
                <ul class="pcoded-submenu">

@@ -12,10 +12,14 @@ class BusinessRequest extends Model
     use HasFactory;
     protected $guarded = [];
     
+    protected $casts = [
+        'present_address' => 'array'
+    ];
     public function getDistrict(){
         return $this->belongsTo(District::class,'district_id');
     }
     public function getCity(){
         return $this->belongsTo(City::class,'city_id');
     }
+    
 }

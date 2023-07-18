@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\Interfaces\Business\BusinessRepositoryInterface;
 
 class HomeController extends Controller
 {
@@ -11,9 +12,11 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    protected $buRepo;
+
+    public function __construct(BusinessRepositoryInterface $buRepository)
     {
-        // $this->middleware('auth');
+        $this->buRepo = $buRepository;
     }
 
     /**
@@ -23,6 +26,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = [];
+        //For company
+        $where = ['category_id' => 1];
+        $data['company'] = $this->buRepo->getDataCount($where);
+
+        //For Medical
+        $where = ['category_id' => 4];
+        $data['medical'] = $this->buRepo->getDataCount($where);
+
+        //For Technician
+        $where = ['category_id' => 3];
+        $data['technician'] = $this->buRepo->getDataCount($where);
+
+        return view('home',compact('data'));
     }
 }

@@ -48,11 +48,15 @@ Route::get('/get-product', [GeneralController::class,'getProducts']);
 ##subcategory
 Route::get('/get-sub-degree', [GeneralController::class,'getSubDegree']);
 
+## Request list
+Route::get('/get-request', [BusinessRequestController::class,'getRequest']);
+##Request deatil
+Route::get('/get-request-detail/{id?}', [BusinessRequestController::class,'getRequestDetail']);
+
 Route::group(['middleware' => ['auth-token']], function () {
     ## update registration detail
     Route::post('/add-registration-detail', [AuthController::class,'addRegistrationDetail']);
-    Route::post('/add-new-request', [BusinessRequestController::class,'addRequest']);
     ## add new request  (for company House business..)
-    Route::get('/get-request', [BusinessRequestController::class,'getRequest']);
-    ## Request list
+    Route::post('/add-new-request', [BusinessRequestController::class,'addRequest']);
+    
 });

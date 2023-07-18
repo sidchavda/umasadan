@@ -26,7 +26,10 @@ class SubCategoryRepository  extends BaseRepository implements SubCategoryReposi
         $this->subCategoryModelRepo = $subCategoryModel;
     } 
 
-    
+    public function getMultipleRecords(array $data){
+        return $this->subCategoryModelRepo->select('id','sub_cat_name')->whereIn('id',$data)->get()->toArray();
+       
+    }
 
 }
 ?>
