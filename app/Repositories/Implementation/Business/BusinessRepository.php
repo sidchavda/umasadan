@@ -57,7 +57,10 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
                         CONCAT(u.first_name, ' ',u.middle_name,u.last_name) as full_name,
                         sc.sub_cat_name as sub_category,
                         br.category_id,
-                        br.searchable_address
+                        br.searchable_address,
+                        br.email,
+                        br.mobile_number,
+                        brd.section
                     ")
                     ->where(function($query) use ($filter){
                         if(!empty($filter['category_id'])){
@@ -66,6 +69,7 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
                     })
                     ->leftjoin('sub_categories as sc','sc.id','=','br.sub_category_id')
                     ->leftjoin('users as u','u.id','=','br.create_by')
+                    ->leftjoin('business_request_details as brd','brd.b_r_id','=','br.id')
                     ->where('status','pending')->get();    
        return $response;
     }
