@@ -50,7 +50,7 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
        return  $this->update($buId,['searchable_address' => implode(',',$address)]); 
     }
 
-    public function getData(array $filter = []){
+    public function getData(array $filter = [],$limit = []){
        $response =  DB::table('business_requests as br')
                     ->selectRaw("
                         br.id,br.business_name,
@@ -70,7 +70,7 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
                     ->leftjoin('sub_categories as sc','sc.id','=','br.sub_category_id')
                     ->leftjoin('users as u','u.id','=','br.create_by')
                     ->leftjoin('business_request_details as brd','brd.b_r_id','=','br.id')
-                    ->where('status','pending')->get();    
+                    ->where('status','pending')->skip($limit['start'])->take($limit['limit'])->get();    
        return $response;
     }
 

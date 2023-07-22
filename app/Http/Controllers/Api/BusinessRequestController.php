@@ -85,10 +85,20 @@ class BusinessRequestController extends BaseController
         return $validator;        
     }
     public function getRequest(Request $request){
+        ## Filter data
         $filter = ['category_id' => $request->category_id];
-        $records = $this->buRepo->getData($filter);
+
+        ## Pageination portion
+        $page = !empty($request->page) ? $request->page : 1; 
+        $aTotalRows = $this->buRepo->getAllRecords($filter);
+        $nRecordsPerPage = !empty($request->limit) ? $request->limit : 10;
+        $nTotalPages = ceil(count($aTotalRows) / $nRecordsPerPage);
+        $offset = ($page-1) * $nRecordsPerPage; 
+        $limit = ['start' => $offset,'limit' => $nRecordsPerPage];
+        
+        $records = $this->buRepo->getData($filter,$limit);  
         if($records->count() > 0){
-            return $this->sendResponse($records,trans('messages.records_found'),200);
+            return $this->sendResponse(['total_page'=>$nTotalPages,'data' => $records],trans('messages.records_found'),200);
         }else{
             return  $this->sendError([],trans('messages.records_not_found'),config('constants.status_code.not_found'));  
         } 
