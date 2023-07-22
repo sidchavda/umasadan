@@ -28,7 +28,7 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
     }
     public function storeData($data){
         $postParam = ['category_id' => $data['category_id'],
-        'business_name' => $data['business_name'],'mobile_number' => $data['mobile_number'],'district_id' => $data['district_id'],'city_id' => $data['city_id'],'present_address' => $data['present_address'],'create_by' => $data['user_id']];
+        'business_name' => $data['business_name'],'mobile_number' => $data['mobile_number'],'district_id' => $data['district_id'],'city_id' => $data['city_id'],'present_address' => $data['present_address'],'create_by' => $data['user_id'],'email' => $data['email']];
         if($data['category_id'] != 1) {   
             $postParam['sub_category_id'] = $data['sub_category_id']; 
         } 
