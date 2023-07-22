@@ -5,7 +5,7 @@ namespace App\Repositories\Implementation\Business;
 use App\Base\BaseRepository;
 use App\Models\BusinessRequestDetail;
 use App\Repositories\Interfaces\Business\BusinessDetailRepositoryInterface;
-use App\Repositories\Interfaces\Category\SubCategoryRepositoryInterface;
+use App\Repositories\Interfaces\Degree\SubDegreeRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection; 
 use DB;
 use Datatables;
@@ -17,18 +17,18 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
      * @var BusinessDetail
      */
     protected $businessDetailRepo;
-    protected $subCategoryRepo;
+    protected $subDegreeRepo;
 
     /**
      * BusinessRequest constructor.
      *
      * @param BusinessRequestDetail $businessDetail
      */
-    public function __construct(BusinessRequestDetail $businessDetail,SubCategoryRepositoryInterface $subCategoryRepo)
+    public function __construct(BusinessRequestDetail $businessDetail,SubDegreeRepositoryInterface $subDegreeRepo)
     {
         parent::__construct($businessDetail);
         $this->businessDetailRepo = $businessDetail;
-        $this->subCategoryRepo = $subCategoryRepo;
+        $this->subDegreeRepo = $subDegreeRepo;
     }
 
     public function storeData(array $data){
@@ -81,10 +81,12 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
     public function getDetail($id){
         $with = ['getMainRequest:id,business_name,email,mobile_number,present_address,status,searchable_address','getDegree:id,degree_name'];
         $select = ['id','sub_degree_id','experience_year','section','delivery_type','job_day_type','shift','work_platform','working_hours','business_desc','products','id_proof','created_at'];
-        $select = [];
+        // $select = [];
         $records = $this->getSingleRecords(['b_r_id' => $id],$select,$with); 
-        if(!empty($records)){
-            $records->get_sub_degree= $this->subCategoryRepo->getMultipleRecords($records->sub_degree_id);
+    
+        if(!empty($records->sub_degree_id)){
+            $subDegress = json_decode($records->sub_degree_id);
+            $records->get_sub_degree= $this->subDegreeRepo->getMultipleRecords($subDegress);
         }
         return  $records;  
         // $this->subCategoryRepo

@@ -26,7 +26,10 @@ class SubDegreeRepository  extends BaseRepository implements SubDegreeRepository
         $this->subDegreeModelRepo = $subDegreeModel;
     } 
 
-    
+    public function getMultipleRecords(array $data){
+        return $this->subDegreeModelRepo->select('id','sub_degree_name')->whereIn('id',$data)->get()->toArray();
+       
+    }
 
 }
 ?>
