@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\DegreeController;
 use App\Http\Controllers\Backend\SubDegreeController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\BusinessRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +58,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     
     ##Customer List 
     Route::group(['prefix' => 'customer','as' => 'customer.'], function () {
-        Route::get('/',[UserController::class,'index']);
+        Route::get('/',[UserController::class,'index'])->name('index');
         Route::get('detail/{id?}',[UserController::class,'detail'])->name('detail');
     });
+    #get all request data
+    Route::get('business-request',[BusinessRequestController::class,'getRequest'])->name('request');
+    
+    ## Request Detail
+    Route::get('business-request-detail/{id?}',[BusinessRequestController::class,'getRequestDetail'])->name('request.detail');
 });

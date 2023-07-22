@@ -24,11 +24,11 @@
                <span class="pcoded-mtext">Categories</span>
                </a> 
                <ul class="pcoded-submenu">
-                  <li class="{{ Route::is('admin.category.*') ? 'active' : '' }}">
+                  <!-- <li class="{{ Route::is('admin.category.*') ? 'active' : '' }}">
                      <a href="{{route('admin.category.index')}}">
                      <span class="pcoded-mtext">Main Catgeory</span>
                      </a>
-                  </li>
+                  </li> -->
                   <li class="{{ Route::is('admin.subcategory.*') ? 'active' : '' }}">
                      <a href="{{route('admin.subcategory.index')}}">
                      <span class="pcoded-mtext">Sub Category</span>
@@ -42,6 +42,46 @@
             <a href="{{route('admin.product.index')}}">
             <span class="pcoded-micon"><i class="feather icon-feather"></i></span>
             <span class="pcoded-mtext {{ Route::is('admin.product.*') ? 'activeMenu' : '' }}">Product</span>
+            </a>
+         </li>
+      </ul>
+      <ul class="pcoded-item pcoded-left-item">
+         <li class="">
+            <a href="{{route('admin.request')}}?category_id=1">
+            <span class="pcoded-micon"><i class="feather icon-award"></i></span>
+            <span class="pcoded-mtext {{ request()->is('admin/business-request*') && request()->query('category_id') == 1 ? 'activeMenu' : '' }}">Company Job Request</span> 
+            </a>
+         </li>
+      </ul>
+      <ul class="pcoded-item pcoded-left-item">
+         <li class="">
+            <a href="{{route('admin.request')}}?category_id=3">
+            <span class="pcoded-micon"><i class="feather icon-airplay"></i></span>
+            <span class="pcoded-mtext {{ request()->is('admin/business-request*') && request()->query('category_id') == 3 ? 'activeMenu' : '' }}">Technician Request</span>
+            </a>
+         </li>
+      </ul>
+      <ul class="pcoded-item pcoded-left-item">
+         <li class="">
+            <a href="{{route('admin.request')}}?category_id=4">
+            <span class="pcoded-micon"><i class="fa fa-user-md"></i></span>
+            <span class="pcoded-mtext {{ request()->is('admin/business-request*') && request()->query('category_id') == 4 ? 'activeMenu' : '' }}">Medical Request</span>
+            </a>
+         </li>
+      </ul>
+      <ul class="pcoded-item pcoded-left-item">
+         <li class="">
+            <a href="{{route('admin.request')}}?category_id=2">
+            <span class="pcoded-micon"><i class="fa fa-home"></i></span>
+            <span class="pcoded-mtext {{ request()->is('admin/business-request*') && request()->query('category_id') == 2 ? 'activeMenu' : '' }}">Home Industry</span>
+            </a>
+         </li>
+      </ul>
+      <ul class="pcoded-item pcoded-left-item">
+         <li class="">
+            <a href="{{route('admin.customer.index')}}">
+            <span class="pcoded-micon"><i class="fa fa-user"></i></span>
+            <span class="pcoded-mtext {{ Route::is('admin.customer.*') ? 'activeMenu' : '' }}">Customers</span>
             </a>
          </li>
       </ul>

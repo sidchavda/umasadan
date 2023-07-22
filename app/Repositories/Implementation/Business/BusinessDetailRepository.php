@@ -82,8 +82,10 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
         $with = ['getMainRequest:id,business_name,email,mobile_number,present_address,status,searchable_address','getDegree:id,degree_name'];
         $select = ['id','sub_degree_id','experience_year','section','delivery_type','job_day_type','shift','work_platform','working_hours','business_desc','products','id_proof','created_at'];
         $select = [];
-        $records = $this->getSingleRecords(['id' => $id],$select,$with);  
-        $records->get_sub_degree= $this->subCategoryRepo->getMultipleRecords($records->sub_degree_id);
+        $records = $this->getSingleRecords(['b_r_id' => $id],$select,$with); 
+        if(!empty($records)){
+            $records->get_sub_degree= $this->subCategoryRepo->getMultipleRecords($records->sub_degree_id);
+        }
         return  $records;  
         // $this->subCategoryRepo
     }

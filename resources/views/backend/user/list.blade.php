@@ -29,7 +29,7 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$value->full_name}}</td> 
                                     <td>@if(isset($value->mobile_number)){{$value->mobile_number}}@endif</td> 
-                                    <td>{{$value->getAddress->getDistrict->district_name}} - {{$value->getAddress->getCity->city_name}}</td>
+                                    <td>@isset($value->getAddress->getDistrict->district_name){{$value->getAddress->getDistrict->district_name}} - {{$value->getAddress->getCity->city_name}}@endisset</td>
                                     <td>{{$value->created_at->format('d M Y')}}</td>
                                     <td>
                                         <a href="{{route('admin.customer.detail',['id' => $value->id])}}"><i class="fa fa-eye editClass" aria-hidden="true"></i></a>

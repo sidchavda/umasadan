@@ -21,7 +21,6 @@ class UserController extends Controller
     public function detail(int $id){
         $with = ['getAddress.getDistrict','getAddress.getCity']; 
         $record = $this->userRepo->getById($id,$with);
-        
         return view('backend.user.detail',['record' => $record]);
     }
 }

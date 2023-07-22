@@ -104,7 +104,7 @@ class BusinessRequestController extends BaseController
             }   
         }
         catch(\Exception $e){ 
-            $response['error'] = !empty($e->getMessage())?$e->getMessage() : '';
+           $response['error'] = !empty($e->getMessage())?$e->getMessage() : '';
            return  $this->sendError($response,trans('messages.something'),500);
         }
     }

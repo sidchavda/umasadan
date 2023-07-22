@@ -7,6 +7,7 @@
                               <div class="page-body">
                                  <div class="row">
                                     <div class="col-xl-4 col-md-6">
+                                    <a href="{{route('admin.request')}}?category_id=1">
                                        <div class="card bg-c-yellow text-white">
                                           <div class="card-block">
                                              <div class="row align-items-center">
@@ -20,8 +21,10 @@
                                              </div>
                                           </div>
                                        </div>
+                                    </a>   
                                     </div>
                                     <div class="col-xl-4 col-md-6">
+                                    <a href="{{route('admin.request')}}?category_id=3">
                                        <div class="card bg-c-green text-white">
                                           <div class="card-block">
                                              <div class="row align-items-center">
@@ -35,8 +38,10 @@
                                              </div>
                                           </div>
                                        </div>
+                                    </a>
                                     </div>
                                     <div class="col-xl-4 col-md-6">
+                                    <a href="{{route('admin.request')}}?category_id=4">
                                        <div class="card bg-c-pink text-white">
                                           <div class="card-block">
                                              <div class="row align-items-center">
@@ -50,6 +55,7 @@
                                              </div>
                                           </div>
                                        </div>
+                                    </a>
                                     </div>
                                     <!-- <div class="col-xl-3 col-md-6">
                                        <div class="card bg-c-blue text-white">
