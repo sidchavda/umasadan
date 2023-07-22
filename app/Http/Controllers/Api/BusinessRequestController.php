@@ -98,7 +98,7 @@ class BusinessRequestController extends BaseController
         
         $records = $this->buRepo->getData($filter,$limit);  
         if($records->count() > 0){
-            return $this->sendResponse(['total_page'=>$nTotalPages,'data' => $records],trans('messages.records_found'),200);
+            return $this->sendResponse(['total_page'=>$nTotalPages,'records' => $records],trans('messages.records_found'),200);
         }else{
             return  $this->sendError([],trans('messages.records_not_found'),config('constants.status_code.not_found'));  
         } 
