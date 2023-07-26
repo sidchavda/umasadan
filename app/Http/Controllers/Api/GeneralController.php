@@ -111,8 +111,8 @@ class GeneralController extends BaseController
     }
 
     public function getProducts(Request $request){   
-        $input = ['category_id' => $request->category_id];
-        $with = [];$order = ['id' => 'desc'];$select = 'id,product_name,category_id';
+        $input = ['sub_category_id' => $request->sub_category_id];
+        $with = [];$order = ['id' => 'desc'];$select = 'id,product_name,sub_category_id';
         $products = $this->productRepo->getAllRecords($input,$with,$order,[],false,$select);
       
         if($products->count() > 0){ 

@@ -34,16 +34,16 @@
                             @csrf
                             @if(isset($record)) <input name="_method" type="hidden" value="PUT"> @endif
                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label">Category *</label>
+                              <label class="col-sm-2 col-form-label">Sub Category *</label>
                               <div class="col-sm-10">
-                                 <select class="form-control" name="category_id" required>
+                                 <select class="form-control" name="sub_category_id" required>
                                     <option value="">Select..</option>
                                     @foreach($categories as $value)
-                                       <option value="{{$value->id}}" @if(isset($record) && ($value->id == $record->category_id)) selected @endif>{{$value->cat_name}}</option>
+                                       <option value="{{$value->id}}" @if(isset($record) && ($value->id == $record->sub_category_id)) selected @endif>{{$value->cat_name}}</option>
                                     @endforeach
                                  </select>
                               </div> 
-                                @error('category_id') 
+                                @error('sub_category_id') 
                                     <div class="alert alert-danger">{{ $message }}</div> 
                                 @enderror
                            </div>

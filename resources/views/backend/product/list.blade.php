@@ -19,7 +19,7 @@
                                     <thead>
                                         <th>#</th>
                                         <th>Product Name</th>
-                                        <th>Category Name</th>
+                                        <th>Sub Category Name</th>
                                         <th>Created Date</th>
                                         <th>Action</th>
                                     </thead>
@@ -28,7 +28,7 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$value->product_name}}</td>
-                                            <td>@if(isset($value->getCategory->cat_name)){{$value->getCategory->cat_name}}@endif</td>
+                                            <td>@if(isset($value->getSubCategory->sub_cat_name)){{$value->getSubCategory->sub_cat_name}}@endif</td>
                                             <td>{{$value->created_at->format('d M Y')}}</td>
                                             <td>
                                             <a href="{{route('admin.product.edit',['product' => $value->id])}}"><i class="fa fa-edit editClass" aria-hidden="true"></i></a>

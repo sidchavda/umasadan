@@ -8,9 +8,9 @@ class Product extends CustomModel
 {
     
     protected $fillable = [
-        'product_name','category_id','create_by'   
+        'product_name','sub_category_id','create_by'   
     ];
-    public function getCategory(){
-        return  $this->belongsTo(Category::class,'category_id');
+    public function getSubCategory(){
+        return  $this->belongsTo(SubCategory::class,'sub_category_id');
      }
 }

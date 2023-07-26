@@ -5,19 +5,19 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\Product\ProductRepositoryInterface;
-use App\Repositories\Interfaces\Category\CategoryRepositoryInterface;
+use App\Repositories\Interfaces\Category\SubCategoryRepositoryInterface;
 use DB;
 class ProductController extends Controller
 {
     protected $productRepo;
-    protected $categoryRepo;
+    protected $subCategoryRepo;
 
     public function __construct(
         ProductRepositoryInterface $productRepo,
-        CategoryRepositoryInterface $categoryRepo,
+        SubCategoryRepositoryInterface $categoryRepo,
         ){ 
             $this->productRepo = $productRepo;
-            $this->categoryRepo = $categoryRepo;
+            $this->subCategoryRepo = $categoryRepo;
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class ProductController extends Controller
     {
         $this->sLable = 'Add';
         $this->sAction = route('admin.product.create');
-        $input = [];$with = ['getCategory:id,cat_name'];$order = ['id' => 'desc'];
+        $input = [];$with = ['getSubCategory:id,sub_cat_name'];$order = ['id' => 'desc'];
         $records = $this->productRepo->getAllRecords($input,$with,$order);
       
         return view('backend.product.list',['data' => $this,'records' => $records]);
@@ -39,8 +39,8 @@ class ProductController extends Controller
     {
         $this->sLable = 'Add Product';
         $this->sAction = route('admin.product.store');
-        $input = [];$with = [];$order = ['id' => 'desc'];$select = 'id,cat_name';
-        $categories = $this->categoryRepo->getAllRecords($input,$with,$order,[],false,$select);
+        $input = ['category_id' => 2];$with = [];$order = ['id' => 'desc'];$select = 'id,sub_cat_name';
+        $categories = $this->subCategoryRepo->getAllRecords($input,$with,$order,[],false,$select);
         return view('backend.product.create',['data' => $this,'categories' => $categories]);
     }
 
@@ -51,7 +51,7 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'product_name' => 'required',           
-            'category_id' => 'required|numeric'           
+            'sub_category_id' => 'required|numeric'           
         ]);
         DB::beginTransaction();
         try{
@@ -84,7 +84,7 @@ class ProductController extends Controller
         $this->sAction = route('admin.product.update',['product' => $id]);
         $record = $this->productRepo->getbyId($id); 
         $order =['id'=>'desc'];
-        $category = $this->categoryRepo->getAllRecords([],[],$order);
+        $category = $this->subCategoryRepo->getAllRecords([],[],$order);
         return view('backend.product.create',['data' => $this,'record' => $record,'categories' => $category]);
      
     }
@@ -96,7 +96,7 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'product_name' => 'required',           
-            'category_id' => 'required|numeric'           
+            'sub_category_id' => 'required|numeric'           
         ]);
         DB::beginTransaction();
         try{
