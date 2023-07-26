@@ -39,7 +39,7 @@
                                  <select class="form-control" name="sub_category_id" required>
                                     <option value="">Select..</option>
                                     @foreach($categories as $value)
-                                       <option value="{{$value->id}}" @if(isset($record) && ($value->id == $record->sub_category_id)) selected @endif>{{$value->cat_name}}</option>
+                                       <option value="{{$value->id}}" @if(isset($record) && ($value->id == $record->sub_category_id)) selected @endif>{{$value->sub_cat_name}}</option>
                                     @endforeach
                                  </select>
                               </div> 
