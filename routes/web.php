@@ -11,7 +11,7 @@ use App\Http\Controllers\Backend\SubDegreeController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\BusinessRequestController;
-
+use App\Http\Controllers\Backend\TermsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,4 +66,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     
     ## Request Detail
     Route::get('business-request-detail/{id?}',[BusinessRequestController::class,'getRequestDetail'])->name('request.detail');
+
+    Route::get('term',[TermsController::class,'updateTerm'])->name('term');
+    
+    Route::post('term',[TermsController::class,'updateTerm']); 
+
 });

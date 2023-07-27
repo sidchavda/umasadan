@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\District;
 use App\Models\City;
+use App\Models\Term;
 use App\Repositories\Interfaces\Category\CategoryRepositoryInterface;
 use App\Repositories\Interfaces\Category\SubCategoryRepositoryInterface;
 use App\Repositories\Interfaces\Degree\DegreeRepositoryInterface;
@@ -17,6 +18,7 @@ class GeneralController extends BaseController
     protected $degreeRepo;
     protected $district;
     protected $city;
+    protected $term;
     protected $productRepo;
     public function __construct(
         District $district,
@@ -25,7 +27,8 @@ class GeneralController extends BaseController
         SubCategoryRepositoryInterface $subCategoryRepo,
         DegreeRepositoryInterface $degreeRepo,
         SubDegreeRepositoryInterface $subDegreeRepo,
-        ProductRepositoryInterface $productRepo
+        ProductRepositoryInterface $productRepo,
+        Term $term
         
         )
     {
@@ -36,6 +39,7 @@ class GeneralController extends BaseController
         $this->degreeRepo = $degreeRepo; 
         $this->subDegreeRepo = $subDegreeRepo;
         $this->productRepo = $productRepo;
+        $this->term = $term;
     }
 
     public function getDistrict(){ 
@@ -120,5 +124,12 @@ class GeneralController extends BaseController
         }else{
             return  $this->sendError([],trans('messages.records_not_found'),config('constants.status_code.not_found'));  
         }
+    }
+    public function getTerms(){
+        $data = $this->term->first();
+        if($data){
+            return $data->description;
+        }
+        return NULL;
     }
 }

@@ -27,6 +27,7 @@
       <script src="{{asset('files/assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
       <script type="text/javascript" src="{{asset('files/assets/pages/dashboard/crm-dashboard.min.js')}}"></script>
       <script type="text/javascript" src="{{asset('files/assets/js/script.js')}}"></script>
+     
       <script>
       function deleteRow(event){
          event.preventDefault();

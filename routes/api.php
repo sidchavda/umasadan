@@ -52,6 +52,8 @@ Route::get('/get-sub-degree', [GeneralController::class,'getSubDegree']);
 Route::get('/get-request', [BusinessRequestController::class,'getRequest']);
 ##Request deatil
 Route::get('/get-request-detail/{id?}', [BusinessRequestController::class,'getRequestDetail']);
+## get terms
+Route::get('/get-terms', [GeneralController::class,'getTerms']);
 
 Route::group(['middleware' => ['auth-token']], function () {
     ## update registration detail
