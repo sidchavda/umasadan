@@ -127,6 +127,11 @@
                      <span class="pcoded-mtext">Roles</span> 
                      </a>
                   </li>
+                  <li class="{{ Route::is('admin.term') ? 'active' : '' }}">
+                     <a href="{{route('admin.term')}}">
+                     <span class="pcoded-mtext">Terms & Conditions</span> 
+                     </a>
+                  </li>
                </ul>
          </li>
       </ul>
