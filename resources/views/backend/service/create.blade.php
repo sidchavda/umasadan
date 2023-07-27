@@ -8,7 +8,7 @@
                <div class="col-lg-8">
                   <div class="page-header-title">
                      <div class="d-inline">
-                        <h4>Terms</h4>
+                        <h4>Services</h4>
                      </div>
                   </div>
                </div>

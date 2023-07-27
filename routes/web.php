@@ -71,4 +71,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     
     Route::post('term',[TermsController::class,'updateTerm']); 
 
+    Route::get('service',[TermsController::class,'updateService'])->name('service');
+    
+    Route::post('service',[TermsController::class,'updateService']); 
+
 });

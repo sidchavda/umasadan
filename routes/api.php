@@ -54,6 +54,7 @@ Route::get('/get-request', [BusinessRequestController::class,'getRequest']);
 Route::get('/get-request-detail/{id?}', [BusinessRequestController::class,'getRequestDetail']);
 ## get terms
 Route::get('/get-terms', [GeneralController::class,'getTerms']);
+Route::get('/get-services', [GeneralController::class,'getService']);
 
 Route::group(['middleware' => ['auth-token']], function () {
     ## update registration detail

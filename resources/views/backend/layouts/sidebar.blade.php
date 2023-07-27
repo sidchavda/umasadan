@@ -112,6 +112,16 @@
                <span class="pcoded-mtext">Settings</span>
                </a> 
                <ul class="pcoded-submenu">
+                  <li class="{{ Route::is('admin.term') ? 'active' : '' }}">
+                     <a href="{{route('admin.term')}}">
+                     <span class="pcoded-mtext">Terms & Conditions</span> 
+                     </a>
+                  </li>
+                  <li class="{{ Route::is('admin.service') ? 'active' : '' }}">
+                     <a href="{{route('admin.service')}}">
+                     <span class="pcoded-mtext">Own Services</span> 
+                     </a>
+                  </li>
                   <li class="{{ Route::is('admin.district.*') ? 'active' : '' }}">
                      <a href="{{route('admin.district.index')}}">
                      <span class="pcoded-mtext">Districts</span>
@@ -127,11 +137,7 @@
                      <span class="pcoded-mtext">Roles</span> 
                      </a>
                   </li>
-                  <li class="{{ Route::is('admin.term') ? 'active' : '' }}">
-                     <a href="{{route('admin.term')}}">
-                     <span class="pcoded-mtext">Terms & Conditions</span> 
-                     </a>
-                  </li>
+                  
                </ul>
          </li>
       </ul>
