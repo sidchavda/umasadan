@@ -66,6 +66,9 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
                         if(!empty($filter['category_id'])){
                             $query->where('br.category_id',$filter['category_id']);
                         }
+                        if(!empty($filter['user_id'])){
+                            $query->where('br.create_by',$filter['user_id']);
+                        }
                     })
                     ->leftjoin('sub_categories as sc','sc.id','=','br.sub_category_id')
                     ->leftjoin('users as u','u.id','=','br.create_by')
