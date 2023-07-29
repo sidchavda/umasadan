@@ -6,6 +6,7 @@ use App\Base\BaseRepository;
 use App\Models\BusinessRequestDetail;
 use App\Repositories\Interfaces\Business\BusinessDetailRepositoryInterface;
 use App\Repositories\Interfaces\Degree\SubDegreeRepositoryInterface;
+use App\Repositories\Interfaces\Product\ProductRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection; 
 use DB;
 use Datatables;
@@ -18,17 +19,19 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
      */
     protected $businessDetailRepo;
     protected $subDegreeRepo;
+    protected $productRepo;
 
     /**
      * BusinessRequest constructor.
      *
      * @param BusinessRequestDetail $businessDetail
      */
-    public function __construct(BusinessRequestDetail $businessDetail,SubDegreeRepositoryInterface $subDegreeRepo)
+    public function __construct(BusinessRequestDetail $businessDetail,SubDegreeRepositoryInterface $subDegreeRepo, ProductRepositoryInterface $productRepo)
     {
         parent::__construct($businessDetail);
         $this->businessDetailRepo = $businessDetail;
         $this->subDegreeRepo = $subDegreeRepo;
+        $this->productRepo = $productRepo;
     }
 
     public function storeData(array $data){
@@ -80,16 +83,22 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
 
     public function getDetail($id){
         $with = ['getMainRequest:id,business_name,email,mobile_number,present_address,status,searchable_address','getDegree:id,degree_name'];
-        $select = ['id','sub_degree_id','experience_year','section','delivery_type','job_day_type','shift','work_platform','working_hours','business_desc','products','id_proof','created_at'];
+        $select = ['id','b_r_id','degree_id','sub_degree_id','experience_year','section','delivery_type','job_day_type','shift','work_platform','working_hours','business_desc','products','id_proof','created_at'];
         // $select = [];
         $records = $this->getSingleRecords(['b_r_id' => $id],$select,$with); 
-    
         if(!empty($records->sub_degree_id)){
             $subDegress = json_decode($records->sub_degree_id);
             $records->get_sub_degree= $this->subDegreeRepo->getMultipleRecords($subDegress);
         }
+        if(!empty($records->products)){
+            $products = json_decode($records->products);
+            $records->products = $this->productRepo->getMultipleRecords($products);
+            if(!empty($aData->products)){ 
+                $records->products = array_column($aData->products, 'product_name');
+            }
+        }
         return  $records;  
-        // $this->subCategoryRepo
+      
     }
 }
 ?>
