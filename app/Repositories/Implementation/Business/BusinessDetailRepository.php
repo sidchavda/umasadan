@@ -69,7 +69,7 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
             }
         }
       
-        $this->businessDetailRepo->create($postArray); 
+       return  $this->businessDetailRepo->create($postArray); 
     }
 
     public function addValueInJson($data){
@@ -99,6 +99,19 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
         }
         return  $records;  
       
+    }
+
+    public function uploadProof($data){
+       $postArray = [];
+        if(!empty($data['proof'])){
+            $fileName = $this->uploadFile($data['proof'],'proof');
+            if($fileName){
+                $postArray['id_proof'] = $fileName;
+            }
+        }  
+       
+        return $this->update($data['req_id'],$postArray); 
+       
     }
 }
 ?>

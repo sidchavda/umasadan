@@ -61,5 +61,6 @@ Route::group(['middleware' => ['auth-token']], function () {
     Route::post('/add-registration-detail', [AuthController::class,'addRegistrationDetail']);
     ## add new request  (for company House business..)
     Route::post('/add-new-request', [BusinessRequestController::class,'addRequest']);
-    
+    ## upload Id Proof
+    Route::post('/upload-proof', [BusinessRequestController::class,'uploadProof']);
 });

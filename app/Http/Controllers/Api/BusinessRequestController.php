@@ -40,9 +40,9 @@ class BusinessRequestController extends BaseController
             $requestDetail = $this->buRepo->storeData($param);
             $param['b_r_id'] = $requestDetail->id;
             //store additional detail
-            $this->buDetailRepo->storeData($param);
+            $detailData = $this->buDetailRepo->storeData($param);
             DB::commit();
-            return $this->sendResponse($response,trans('messages.request_submit'),200);
+            return $this->sendResponse($detailData,trans('messages.request_submit'),200);
         }
         catch(\Exception $e){   
            DB::rollback();
@@ -114,6 +114,31 @@ class BusinessRequestController extends BaseController
             }   
         }
         catch(\Exception $e){ 
+           $response['error'] = !empty($e->getMessage())?$e->getMessage() : '';
+           return  $this->sendError($response,trans('messages.something'),500);
+        }
+    }
+    public function uploadProof(Request $request){
+        $param = $request->all();
+        $validationArray = [
+            'req_id' => 'required',
+            'proof' => 'required'
+        ]; 
+        $validator = Validator::make($param,$validationArray);
+        if ($validator->fails())
+        {
+            return $this->sendError([],implode(',',$validator->errors()->all()),400);
+        }       
+        DB::beginTransaction();
+        try{
+            $updateData = $this->buDetailRepo->uploadProof($param);
+            DB::commit();
+            if($updateData){
+                return $this->sendResponse([],trans('messages.upload_proof'),200);
+            }else{
+                return $this->sendResponse([],trans('messages.something'),200);
+            } 
+        }catch(\Exception $e){ 
            $response['error'] = !empty($e->getMessage())?$e->getMessage() : '';
            return  $this->sendError($response,trans('messages.something'),500);
         }

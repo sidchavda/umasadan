@@ -64,7 +64,8 @@ return [
     'contest_join' => 'Contest joined successfully',
     'contest_already_join' => 'Contest already joined',
     'contest_locked' => 'Contest has been locked',
-    'request_submit' => 'Request has been submitted'
+    'request_submit' => 'Request has been submitted',
+    'upload_proof' => 'Proof has been uploaded'
 
 
 ];

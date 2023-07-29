@@ -100,8 +100,10 @@ class BaseRepository
      * @return object
      */
     public function update(int $id,$input){
+     
         $oUpdateData = $this->model->where($this->model->getKeyName(),$id)->first();
         $oUpdateData->update($input);
+        
         //$this->model->find($id)->update($input);
         return $this->getbyId($id);
         
