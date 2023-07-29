@@ -49,7 +49,7 @@ class BaseRepository
      * @return object
      */
     public function getAllRecords($input = [],$with = [],$order = [],$limit = [],$groupBy = false,$select = ''){
-    
+        
         $records =  $this->model;
         if(!empty($select)){
             $records = $records->selectRaw($select);

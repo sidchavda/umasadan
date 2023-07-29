@@ -109,7 +109,6 @@ class BusinessDetailRepository  extends BaseRepository implements BusinessDetail
                 $postArray['id_proof'] = $fileName;
             }
         }  
-       
         return $this->update($data['req_id'],$postArray); 
        
     }
