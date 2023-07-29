@@ -11,6 +11,7 @@
          <div class="page-header">
             <div class="row">
                <div class="col-sm-12">
+                  @include('backend.layouts.message')
                   <div class="card">
                      <div class="card-header">
                         <h5><b>Status:</b>
@@ -26,10 +27,10 @@
                         <span class="{{$class}}" style="color:white">{{$record->status}}</span></h5>
                         <div class="status pull-right">
                         @if(in_array($record->status,['Pending','Reject']))
-                        <a href="{{route('admin.request.detail',['id' => $record->id])}}?status=1" class="btn btn-primary">Accept</a>
+                        <a onclick="return confirm('Are you sure want to change?');" href="{{route('admin.request.detail',['id' => $record->id])}}?status=1" class="btn btn-primary">Accept</a>
                         @endif
                         @if(in_array($record->status,['pending','Accept']))
-                        <a href="{{route('admin.request.detail',['id' => $record->id])}}?status=2" class="btn btn-danger">Reject</a>
+                        <a onclick="return confirm('Are you sure want to change?');" href="{{route('admin.request.detail',['id' => $record->id])}}?status=2" class="btn btn-danger">Reject</a>
                         @endif
                         </div>
                      </div>

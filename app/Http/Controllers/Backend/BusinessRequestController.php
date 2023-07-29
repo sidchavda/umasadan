@@ -8,6 +8,7 @@ use App\Repositories\Interfaces\Business\BusinessRepositoryInterface;
 use App\Repositories\Interfaces\Business\BusinessDetailRepositoryInterface;
 use App\Repositories\Interfaces\Degree\SubDegreeRepositoryInterface;
 use App\Repositories\Interfaces\Product\ProductRepositoryInterface;
+use Session;
 class BusinessRequestController extends Controller
 {
     protected $buRepo;
@@ -41,7 +42,8 @@ class BusinessRequestController extends Controller
         $aData = $this->buRepo->getSingleRecords($input,$select,$with);
         if($request->status){
             $aData->status = ($request->status == 1)?'accept':'reject';
-            $aData->save(); 
+            $aData->save();
+            Session::flash('success', 'Request status has been changed');  
         }
         if(!empty($aData->getRequestDetail->sub_degree_id)){
             $subDegress = json_decode($aData->getRequestDetail->sub_degree_id);
