@@ -86,7 +86,7 @@ class BusinessRequestController extends BaseController
     }
     public function getRequest(Request $request){
         ## Filter data
-        $filter = ['category_id' => $request->category_id,'user_id' => $request->user_id];
+        $filter = ['category_id' => $request->category_id,'create_by' => $request->user_id];
 
         ## Pageination portion
         $page = !empty($request->page) ? $request->page : 1; 
