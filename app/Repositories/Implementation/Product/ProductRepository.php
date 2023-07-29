@@ -25,6 +25,9 @@ class ProductRepository  extends BaseRepository implements ProductRepositoryInte
         parent::__construct($productModel);
         $this->productModelRepo = $productModel;
     }
-
+    public function getMultipleRecords(array $data){
+        return $this->productModelRepo->select('id','product_name')->whereIn('id',$data)->get()->toArray();
+       
+    }
 }
 ?>

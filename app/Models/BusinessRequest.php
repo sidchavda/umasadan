@@ -35,5 +35,7 @@ class BusinessRequest extends Model
     public function getSubCategory(){
         return $this->belongsTo(SubCategory::class,'sub_category_id');
     }
-    
+    public function getCreatedUser(){
+        return $this->belongsTo(User::class,'create_by');
+    }
 }

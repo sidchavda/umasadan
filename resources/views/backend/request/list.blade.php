@@ -52,7 +52,16 @@
                                             <td>{{$value->business_name}}</td>
                                             <td>{{$value->mobile_number}}</td>
                                             <td>{{$value->getCity->city_name}}</td>
-                                            <td><span class="badge badge-warning" style="color:white">{{$value->status}}</span></td>
+                                            <td>
+                                            @php $class = ''; @endphp 
+                                            @if($value->status === 'Pending')
+                                            @php $class = 'badge badge-warning'; @endphp
+                                            @elseif($value->status === 'Accept')
+                                            @php $class = 'badge badge-success'; @endphp
+                                            @elseif($value->status === 'Reject')
+                                            @php $class = 'badge badge-danger'; @endphp
+                                            @endif 
+                                                <span class="{{$class}}" style="color:white">{{$value->status}}</span></td>
                                             <td>{{$value->created_at->format('d M Y')}}</td>
                                             <td>
                                             <a href="{{route('admin.request.detail',['id' => $value->id])}}"><i class="fa fa-eye editClass" aria-hidden="true"></i></a>
