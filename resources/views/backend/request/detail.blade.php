@@ -68,7 +68,7 @@
                         <br><br>
                         <h5><b>Comapany Address</b> : {{$record->searchable_address}}</h5>
                         <br><br>
-                        <h5><b>Degree</b> : {{$record->getRequestDetail->getDegree->degree_name}}</h5>
+                        <h5><b>Degree</b> : @if(!empty($record->getRequestDetail->getDegree)){{$record->getRequestDetail->getDegree->degree_name}}@endif</h5>
                         <br><br>
                         <h5><b>Sub Degree</b> : @isset($record->get_sub_degree) {{implode(',',$record->get_sub_degree)}} @endisset</h5>
                         <br><br>
