@@ -73,7 +73,7 @@ class BusinessRepository  extends BaseRepository implements BusinessRepositoryIn
                     ->leftjoin('sub_categories as sc','sc.id','=','br.sub_category_id')
                     ->leftjoin('users as u','u.id','=','br.create_by')
                     ->leftjoin('business_request_details as brd','brd.b_r_id','=','br.id')
-                    ->where('status','pending')->skip($limit['start'])->take($limit['limit'])
+                    ->where('status','accept')->skip($limit['start'])->take($limit['limit'])
                     ->orderBy('br.id','desc')->get();    
        return $response;
     }
