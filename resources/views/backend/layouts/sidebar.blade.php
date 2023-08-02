@@ -114,12 +114,12 @@
                <ul class="pcoded-submenu">
                   <li class="{{ Route::is('admin.term') ? 'active' : '' }}">
                      <a href="{{route('admin.term')}}">
-                     <span class="pcoded-mtext">Terms & Conditions</span> 
+                     <span class="pcoded-mtext">Privacy Policy</span> 
                      </a>
                   </li>
                   <li class="{{ Route::is('admin.service') ? 'active' : '' }}">
                      <a href="{{route('admin.service')}}">
-                     <span class="pcoded-mtext">Own Services</span> 
+                     <span class="pcoded-mtext">About Us</span> 
                      </a>
                   </li>
                   <li class="{{ Route::is('admin.district.*') ? 'active' : '' }}">
