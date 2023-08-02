@@ -57,21 +57,23 @@
                                        </div>
                                     </a>
                                     </div>
-                                    <!-- <div class="col-xl-3 col-md-6">
+                                    <div class="col-xl-4 col-md-6">
+                                    <a href="{{route('admin.request')}}?category_id=2">
                                        <div class="card bg-c-blue text-white">
                                           <div class="card-block">
                                              <div class="row align-items-center">
                                                 <div class="col">
-                                                   <p class="m-b-5">Orders</p>
-                                                   <h4 class="m-b-0">$5,242</h4>
+                                                   <p class="m-b-5">Total Gruhudhyog (Home Industry)</p>
+                                                   <h4 class="m-b-0">{{$data['gruhudhyog']}}</h4>
                                                 </div>
                                                 <div class="col col-auto text-right">
-                                                   <i class="feather icon-shopping-cart f-50 text-c-blue"></i>
+                                                   <i class="feather icon-book f-50 text-c-blue"></i>
                                                 </div>
                                              </div>
                                           </div>
                                        </div>
-                                    </div> -->
+                                    </a>
+                                    </div>
                                  </div>
                               </div>
                            </div>

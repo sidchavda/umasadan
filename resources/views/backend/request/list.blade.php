@@ -38,7 +38,7 @@
                                 <table id="simpletable" class="table table-striped table-bordered nowrap">
                                     <thead>
                                         <th>#</th>
-                                        <th>Company Name</th>
+                                        <th>Name</th>
                                         <th>Mobile Number</th>
                                         <th>City</th>
                                         <th>Status</th>

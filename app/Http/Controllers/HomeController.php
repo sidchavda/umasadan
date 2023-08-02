@@ -31,6 +31,10 @@ class HomeController extends Controller
         $where = ['category_id' => 1];
         $data['company'] = $this->buRepo->getDataCount($where);
 
+        //For Gruhudhyog
+        $where = ['category_id' => 2];
+        $data['gruhudhyog'] = $this->buRepo->getDataCount($where);
+
         //For Medical
         $where = ['category_id' => 4];
         $data['medical'] = $this->buRepo->getDataCount($where);
