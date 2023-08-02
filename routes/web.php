@@ -30,6 +30,9 @@ Route::get('/', function () {
 Auth::routes();
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     
+    Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+    Route::post('/profile', [App\Http\Controllers\HomeController::class, 'updateProfile']);
+    
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     
     ##district

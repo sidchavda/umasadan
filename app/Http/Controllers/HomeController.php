@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\Business\BusinessRepositoryInterface;
-
+use Auth;
+use App\Repositories\Interfaces\User\UserRepositoryInterface;
+use Hash;
 class HomeController extends Controller
 {
     /**
@@ -14,9 +16,10 @@ class HomeController extends Controller
      */
     protected $buRepo;
 
-    public function __construct(BusinessRepositoryInterface $buRepository)
+    public function __construct(BusinessRepositoryInterface $buRepository,UserRepositoryInterface $userRepo)
     {
         $this->buRepo = $buRepository;
+        $this->userRepo = $userRepo; 
     }
 
     /**
@@ -44,5 +47,20 @@ class HomeController extends Controller
         $data['technician'] = $this->buRepo->getDataCount($where);
 
         return view('home',compact('data'));
+    }
+    public function profile(Request $request){
+        return view('profile');
+    }
+    public function updateProfile(Request $request){
+        $userId = Auth::user()->id;
+        $this->validate($request, [
+            'email' => 'required|email|unique:users,email,'.$userId,           
+        ]);
+        $data = ['first_name' => $request->first_name,'email' => $request->email];
+        if($request->password){
+            $data['password'] = Hash::make($request->password); 
+        }
+        $this->userRepo->update($userId,$data);
+        return redirect()->route('admin.profile')->with('success',"Profile has been updated");
     }
 }

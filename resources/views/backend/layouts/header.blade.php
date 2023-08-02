@@ -150,12 +150,12 @@
                            <div class="dropdown-primary dropdown">
                               <div class="dropdown-toggle" data-toggle="dropdown">
                                  <img src="{{asset('files/assets/images/avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
-                                 <span>John Doe</span>
+                                 <span>{{Auth::user()->first_name}}</span>
                                  <i class="feather icon-chevron-down"></i>
                               </div>
                               <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                  <li>
-                                    <a href="user-profile.html">
+                                    <a href="{{route('admin.profile')}}">
                                     <i class="feather icon-user"></i> Profile
                                     </a>
                                  </li>
